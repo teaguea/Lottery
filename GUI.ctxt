@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=arg
+comment0.target=void\ main(java.lang.String[])
+comment1.params=
+comment1.target=GUI()
+comment1.text=\r\n\ \ \ \ Constructor\ -\ instantiates\ and\ displays\ all\ of\ the\ GUI\ commponents\r\n
+comment2.params=tix
+comment2.target=void\ displayTickets(java.util.ArrayList)
+comment2.text=\r\n\ \ \ \ List\ all\ entries\ given\ an\ ArrayList\ of\ tickets\r\n\r\n\ \ \ \ @param\ tix\ list\ of\ all\ tickets\r\n
+comment3.params=
+comment3.target=void\ pickNumbers()
+comment4.params=
+comment4.target=void\ setupMenus()
+comment4.text=\r\n\ \ \ \ Set\ up\ the\ menu\ items\r\n
+comment5.params=
+comment5.target=void\ openFile()
+comment5.text=\r\n\ \ \ \ In\ response\ to\ the\ menu\ selection\ -\ open\ a\ data\ file\r\n
+numComments=6

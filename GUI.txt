@@ -1,0 +1,143 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+import java.util.*;
+import java.io.*;
+
+/***********************************************************************
+ * GUI front end for Lottery Simulation 
+ * 
+ * @author Scott Grissom
+ * @version February 1, 2013
+ **********************************************************************/
+public class GUI extends JPanel{
+
+    /** text fields */
+
+    /** results box */
+    private JTextArea results;
+    private JFrame theGUI;
+
+    /** menu items */
+    private JMenuBar menus;
+    private JMenu fileMenu;
+    private JMenu reportsMenu;
+    private JMenuItem quitItem;
+    private JMenuItem openItem; 
+    private JMenuItem stateItem;
+    private JMenuItem reportItem;
+
+    public static void main(String arg[]){
+        // the tradition five lines of code
+        // normally place here are 
+        // inserted throughout the construtor
+        new GUI();
+
+    }
+
+    /*********************************************************************
+    Constructor - instantiates and displays all of the GUI commponents
+     *********************************************************************/
+    public GUI(){
+        
+        theGUI = new JFrame("Mega Million Lottery");
+        theGUI.setVisible(true);
+        theGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        // create the Results Area for the Center area
+        results = new JTextArea(20,20);
+        JScrollPane scrollPane = new JScrollPane(results);
+        theGUI.add(BorderLayout.CENTER, scrollPane);
+        
+        // create the South Panel
+        JPanel southPanel = new JPanel();
+
+        
+        // create the East Panel  
+        JPanel eastPanel = new JPanel();
+        eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
+        theGUI.add(BorderLayout.EAST, eastPanel);
+        eastPanel.add(Box.createVerticalGlue());  
+        eastPanel.add(new JLabel("Draw Ticket"));
+        
+        
+
+        // set up File menus
+        setupMenus();
+        theGUI.pack();
+    }
+
+    /*********************************************************************
+    List all entries given an ArrayList of tickets
+
+    @param tix list of all tickets
+     *********************************************************************/
+    public void displayTickets(ArrayList <LotteryTicket> tix){
+
+    }
+
+  
+    /*********************************************************************
+    Respond to menu selections and button clicks
+
+    @param e the button or menu item that was selected
+     *********************************************************************/
+    private class ButtonListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent e){
+
+            LotteryTicket c = null;
+
+            // menu item - quit
+            if (e.getSource() == quitItem){
+                System.exit(1);
+            }
+            
+        }
+    }
+        /*********************************************************************
+        Set up the menu items
+        *********************************************************************/
+        private void setupMenus(){
+
+            // create menu components
+            fileMenu = new JMenu("File");
+            quitItem = new JMenuItem("Quit");
+            openItem = new JMenuItem("Open...");
+            reportsMenu = new JMenu("Reports");
+            stateItem = new JMenuItem("by State");
+            reportItem = new JMenuItem("All Tickets");
+
+            // assign action listeners
+            ButtonListener ml = new ButtonListener();
+            quitItem.addActionListener(ml);
+            openItem.addActionListener(ml);
+            stateItem.addActionListener(ml);
+            reportItem.addActionListener(ml);
+
+            // display menu components
+            fileMenu.add(openItem);
+            fileMenu.add(quitItem);
+            reportsMenu.add(reportItem);
+            reportsMenu.add(stateItem);    
+            menus = new JMenuBar();
+
+            menus.add(fileMenu);
+            menus.add(reportsMenu);
+            theGUI.setJMenuBar(menus);
+        } 
+        
+        /*********************************************************************
+        In response to the menu selection - open a data file
+         *********************************************************************/
+         private void openFile(){
+             JFileChooser fc = new JFileChooser(new File(System.getProperty("user.dir")));
+             int returnVal = fc.showOpenDialog(theGUI);
+
+             // did the user select a file?
+             if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String filename = fc.getSelectedFile().getName();
+                //db.readTickets(filename);          
+            }
+        }       
+    }
